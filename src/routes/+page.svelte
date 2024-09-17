@@ -7,7 +7,7 @@
 
   // State variables for the typing effect
   let typedWord = '';
-  const words = ["LEADING", "BEST", "CUTTING EDGE"];
+  const words = ["LEADING", "BEST", "ADVANCED"];
   let currentWordIndex = 0;
   let cursorVisible = true;
   let typingIndex = 0;
@@ -99,7 +99,6 @@
 
   .hero-content {
     padding: 1rem;
-    text-align: center;
   }
 
   h1 {
@@ -131,7 +130,7 @@
 
   .cta-buttons {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 1rem;
     align-items: center;
   }
@@ -139,8 +138,8 @@
   button {
     width: 100%;
     max-width: 250px;
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.7rem;
     cursor: pointer;
     transition: background-color 0.3s, border .3s, color .3s;
     border: 1px solid var(--primary);
