@@ -7,49 +7,46 @@
 
   // State variables for the typing effect
   let typedWord = '';
-  const words = ["LEADING", "BEST", "ADVANCED"];
-  let currentWordIndex = 0;
-  let cursorVisible = true;
-  let typingIndex = 0;
-  let isDeleting = false;
+const words = ["LEADING", "BEST", "ADVANCED"];
+let currentWordIndex = 0;
+let cursorVisible = true;
+let isDeleting = false;
+let isPaused = false;
 
-  onMount(() => {
-    // Set up the typing effect interval
-    const typingInterval = setInterval(typeEffect, 100);
-    
-    // Set up the cursor blinking interval
-    setInterval(() => {
-      cursorVisible = !cursorVisible;
-    }, 500);
+onMount(() => {
+  const typingInterval = setInterval(typeEffect, 100);
+  setInterval(() => {
+    cursorVisible = !cursorVisible;
+  }, 500);
 
-    // Clean up intervals on component unmount
-    return () => clearInterval(typingInterval);
-  });
+  return () => clearInterval(typingInterval);
+});
 
-  // Function to handle the typing effect
-  function typeEffect() {
-    const currentWord = words[currentWordIndex];
+function typeEffect() {
+  if (isPaused) return;
 
-    if (!isDeleting && typingIndex < currentWord.length) {
-      // Typing forward
-      typedWord += currentWord[typingIndex];
-      typingIndex++;
-    } else if (!isDeleting && typingIndex === currentWord.length) {
-      // Finished typing the word, prepare to delete
-      isDeleting = true;
+  const currentWord = words[currentWordIndex];
+
+  if (!isDeleting && typedWord !== currentWord) {
+    typedWord = currentWord.substring(0, typedWord.length + 1);
+    if (typedWord === currentWord) {
+      isPaused = true;
       setTimeout(() => {
-        typingIndex--;
-      }, 1000); // Pause before deleting
-    } else if (isDeleting && typingIndex > 0) {
-      // Deleting the word
-      typedWord = currentWord.substring(0, typingIndex - 1);
-      typingIndex--;
-    } else if (isDeleting && typingIndex === 0) {
-      // Finished deleting, move to the next word
-      isDeleting = false;
-      currentWordIndex = (currentWordIndex + 1) % words.length;
+        isPaused = false;
+        isDeleting = true;
+      }, 1000); // Pause for 1 second after typing the full word
     }
+  } else if (isDeleting && typedWord !== '') {
+    typedWord = currentWord.substring(0, typedWord.length - 1);
+  } else if (isDeleting && typedWord === '') {
+    isDeleting = false;
+    currentWordIndex = (currentWordIndex + 1) % words.length;
+    isPaused = true;
+    setTimeout(() => {
+      isPaused = false;
+    }, 600); // Pause for 0.5 seconds before starting the next word
   }
+}
 </script>
 
 <section class="hero">
@@ -169,13 +166,10 @@
     p {
       font-size: 1.1rem;
       max-width: 60ch;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .cta-buttons {
       flex-direction: row;
-      justify-content: center;
     }
 
     button {
