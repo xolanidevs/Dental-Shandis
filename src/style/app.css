@@ -2,12 +2,14 @@
   /* Color */
 
   --background: #f8fafc;
+  --background-gray: #3D4342;;
   --primary: #E1BE57;
   /* --accent: ; */
   /* --text: ; */
   --clr-slate100: #f1f5f9;
   --Neutral500: #737373;
   --gray-500: #6b7280;
+  --gray-800: #57534e;
   --zink-500:#a1a1aa;
   --zink800: #27272a;
 

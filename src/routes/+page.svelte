@@ -4,6 +4,7 @@
   import '../style/utils.css';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import About from '$lib/About.svelte';
 
   // State variables for the typing effect
   let typedWord = '';
@@ -71,6 +72,8 @@ function typeEffect() {
     </div>
   </div>
 </section>
+
+<About />
 
 <style>
   .hero {

@@ -48,8 +48,10 @@
       <li><a href="/">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
+    <!-- <div class="cta">
+      <button class="primary"><a href="#contact">Get A Quote</a></button>
+    </div> -->
   </nav>
 </header>
 
@@ -164,6 +166,32 @@
     text-decoration: none;
     color: var(--background);
     font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.4rem 1rem;
+   
+    cursor: pointer;
+    transition: background-color 0.3s, border .3s, color .3s;
+    border: 1px solid var(--primary);
+  }
+
+  button a{
+    font-size: .9rem;
+    color: var(--primary);
+  }
+
+  .primary {
+    background-color: transparent;
+    color: var(--background);
+  }
+  
+  button:hover {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
   }
   
   @media (min-width: 850px) {
