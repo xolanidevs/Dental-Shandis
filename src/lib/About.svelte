@@ -31,6 +31,7 @@
   padding: 2rem;
   background: var(--background-gray); 
   color: var(--background);
+  overflow: hidden;
 }
 
 .wrapper {
