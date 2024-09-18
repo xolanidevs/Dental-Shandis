@@ -28,15 +28,15 @@
 
   /* Mobile */
   section {
-  padding: 2rem;
-  background: var(--background-gray); 
-  color: var(--background);
-  overflow: hidden;
+ 
+    color: var(--background);
+    background: var(--background-gray); 
 }
 
 .wrapper {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .about-content {
